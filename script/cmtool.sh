@@ -42,15 +42,19 @@ install_chefdk()
     chown vagrant /Users/vagrant/.bash_profile
 }
 
-install_salt() {
+install_salt()
+{
     echo "==> Installing Salt provisioner"
-    if [[ ${CM_VERSION:-} == 'latest' ]]; then
-        echo "==> Installing latest Salt version"
-        curl -L http://bootstrap.saltstack.org | sudo sh
-    else
-        echo "==> Installing Salt version ${CM_VERSION}"
-        curl -L http://bootstrap.saltstack.org | sudo sh -s -- git ${CM_VERSION}
-    fi
+
+    echo "-- Installing Homebrew"    
+    curl -L --silent "https://github.com/Homebrew/brew/tarball/master" | tar zx - --strip 1 -C "/usr/local" 
+    chown -R "${SSH_USERNAME}" /usr/local
+ 
+    echo "-- Adding Homebrew to ${SSH_USERNAME} user's PATH"
+    su - "${SSH_USERNAME}" -c "echo \"export PATH=/usr/local/bin:/usr/local/sbin:\$PATH\" >> .bash_profile && chmod 0700 .bash_profile"
+
+    echo "-- Installing Salt with Homebrew as ${SSH_USERNAME}"
+    su - "${SSH_USERNAME}" -c "source ~/.bash_profile && brew install saltstack"
 }
 
 # Install the latest Puppet and Facter using AutoPkg recipes
