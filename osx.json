@@ -120,13 +120,11 @@
         "script/vagrant.sh",
         "script/vmware.sh",
         "script/parallels.sh",
-        "script/set_suran_sus.sh",
         "script/xcode-cli-tools.sh",
         "script/cmtool.sh",
         "script/add-network-interface-detection.sh",
         "script/autologin.sh",
         "script/update.sh",
-        "script/reset_sus.sh",
         "script/minimize.sh"
       ],
       "type": "shell"
