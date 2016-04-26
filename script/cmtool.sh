@@ -51,7 +51,7 @@ install_salt()
     chown -R "${SSH_USERNAME}" /usr/local
  
     echo "-- Adding Homebrew to ${SSH_USERNAME} user's PATH"
-    su - "${SSH_USERNAME}" -c "echo \"export PATH=/usr/local/bin:/usr/local/sbin:\$PATH\" >> .bash_profile && chmod 0700 .bash_profile"
+    su - "${SSH_USERNAME}" -c "echo 'export PATH=/usr/local/bin:/usr/local/sbin:\$PATH' >> .bash_profile && chmod 0700 .bash_profile"
 
     echo "-- Installing Salt with Homebrew as ${SSH_USERNAME}"
     su - "${SSH_USERNAME}" -c "source ~/.bash_profile && brew install saltstack"
