@@ -1,5 +1,5 @@
 {
-  "_command": "Build with `packer build osx.json`",
+  "_command": "Build with `packer build macos.json`",
   "builders": [
     {
       "boot_wait": "2s",
@@ -78,7 +78,7 @@
         [ "set", "{{.Name}}", "--auto-share-camera", "off" ],
         [ "set", "{{.Name}}", "--auto-share-bluetooth", "off" ],
         [ "set", "{{.Name}}", "--on-window-close", "keep-running" ],
-        [ "set", "{{.Name}}", "--isolate-vm", "on" ],
+        [ "set", "{{.Name}}", "--isolate-vm", "off" ],
         [ "set", "{{.Name}}", "--shf-host", "off" ]
       ],
       "shutdown_command": "echo '{{ user `ssh_username` }}'|sudo -S shutdown -h now",
@@ -121,8 +121,8 @@
         "script/vmware.sh",
         "script/parallels.sh",
         "script/xcode-cli-tools.sh",
-        "script/cmtool.sh",
         "script/add-network-interface-detection.sh",
+        "script/energy.sh",
         "script/autologin.sh",
         "script/update.sh",
         "script/minimize.sh"
@@ -146,7 +146,7 @@
     "update": "true",
     "vagrantfile_template": "",
     "version": "0.1.0",
-    "vm_name": "osx1011",
+    "vm_name": "macos1011",
     "virtualbox_guest_os_type": "MacOS1011_64",
     "vmware_guest_os_type": "darwin15-64"
   }

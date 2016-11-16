@@ -2,9 +2,25 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-    config.vm.define "vagrant-osx108-desktop"
-    config.vm.box = "osx108-desktop"
+    config.vm.define "vagrant-macos1010"
+    config.vm.box = "macos1010"
  
+    ["vmware_fusion", "vmware_workstation"].each do |provider|
+        config.vm.provider provider do |v, override|
+            v.gui = true
+            v.vmx["memsize"] = "2048"
+            v.vmx["numvcpus"] = "1"
+            v.vmx["firmware"] = "efi"
+            v.vmx["keyboardAndMouseProfile"] = "macProfile"
+            v.vmx["smc.present"] = "TRUE"
+            v.vmx["hpet0.present"] = "TRUE"
+            v.vmx["ich7m.present"] = "TRUE"
+            v.vmx["ehci.present"] = "TRUE"
+            v.vmx["usb.present"] = "TRUE"
+            v.vmx["scsi0.virtualDev"] = "lsilogic"
+        end
+    end
+
     config.vm.provider :virtualbox do |v, override|
       v.gui = true
       v.customize ["modifyvm", :id, "--audiocontroller", "hda"]
@@ -19,22 +35,6 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--vram", "128"]
     end
 
-    ["vmware_fusion", "vmware_workstation"].each do |provider| 
-      config.vm.provider provider do |v, override|
-        v.gui = true
-        v.vmx["memsize"] = "2048"
-        v.vmx["numvcpus"] = "1"
-        v.vmx["firmware"] = "efi"
-        v.vmx["keyboardAndMouseProfile"] = "macProfile"
-        v.vmx["smc.present"] = "TRUE"
-        v.vmx["hpet0.present"] = "TRUE"
-        v.vmx["ich7m.present"] = "TRUE"
-        v.vmx["ehci.present"] = "TRUE"
-        v.vmx["usb.present"] = "TRUE"
-        v.vmx["scsi0.virtualDev"] = "lsilogic"
-      end
-    end
-
     config.vm.provider :parallels do |v, override|
       v.customize ["set", :id, "--memsize", "2048"]
       v.customize ["set", :id, "--memquota", "512:2048"]
@@ -45,7 +45,7 @@ Vagrant.configure("2") do |config|
       v.customize ["set", :id, "--auto-share-camera", "off"]
       v.customize ["set", :id, "--auto-share-bluetooth", "off"]
       v.customize ["set", :id, "--on-window-close", "keep-running"]
-      v.customize ["set", :id, "--isolate-vm", "on"]
+      v.customize ["set", :id, "--isolate-vm", "off"]
       v.customize ["set", :id, "--shf-host", "off"]
     end
 end

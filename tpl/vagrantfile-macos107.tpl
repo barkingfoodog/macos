@@ -2,8 +2,8 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-    config.vm.define "vagrant-osx107-desktop"
-    config.vm.box = "osx107-desktop"
+    config.vm.define "vagrant-macos107"
+    config.vm.box = "macos107"
 
     config.vm.provider :virtualbox do |v, override|
       v.gui = true
@@ -45,7 +45,7 @@ Vagrant.configure("2") do |config|
       v.customize ["set", :id, "--auto-share-camera", "off"]
       v.customize ["set", :id, "--auto-share-bluetooth", "off"]
       v.customize ["set", :id, "--on-window-close", "keep-running"]
-      v.customize ["set", :id, "--isolate-vm", "on"]
+      v.customize ["set", :id, "--isolate-vm", "off"]
       v.customize ["set", :id, "--shf-host", "off"]
     end
 end
