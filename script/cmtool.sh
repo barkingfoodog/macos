@@ -46,7 +46,8 @@ install_salt()
 {
     echo "==> Installing Salt provisioner"
 
-    echo "-- Installing Homebrew"    
+    echo "-- Installing Homebrew"
+    mkdir -p "/usr/local" 
     curl -L --silent "https://github.com/Homebrew/brew/tarball/master" | tar zx - --strip 1 -C "/usr/local" 
     chown -R "${SSH_USERNAME}" /usr/local
  
