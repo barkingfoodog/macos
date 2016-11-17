@@ -47,9 +47,9 @@ install_salt()
     echo "==> Installing Salt provisioner"
 
     echo "-- Installing Homebrew"
-    mkdir -p "/usr/local" 
-    curl -L --silent "https://github.com/Homebrew/brew/tarball/master" | tar zx - --strip 1 -C "/usr/local" 
+    mkdir -p /usr/local
     chown -R "${SSH_USERNAME}" /usr/local
+    su - "${SSH_USERNAME}" -c "curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C /usr/local"
  
     echo "-- Adding Homebrew to ${SSH_USERNAME} user's PATH"
     su - "${SSH_USERNAME}" -c "echo 'export PATH=/usr/local/bin:/usr/local/sbin:\$PATH' >> .bash_profile && chmod 0700 .bash_profile"
