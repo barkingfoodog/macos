@@ -56,6 +56,13 @@ install_salt()
 
     echo "-- Installing Salt with Homebrew as ${SSH_USERNAME}"
     su - "${SSH_USERNAME}" -c "source ~/.bash_profile && brew install saltstack"
+
+    echo "-- Setting ssh to allow user environment and including .bash_profile"
+    echo "PermitUserEnvironment yes" >> /etc/ssh/sshd_config
+    su - "${SSH_USERNAME}" -c "echo 'source ~/.bash_profile\' > ~/.ssh/environment"
+
+    echo "-- Installing chef for busser"
+    bash <(curl -L https://www.getchef.com/chef/install.sh)
 }
 
 # Install the latest Puppet and Facter using AutoPkg recipes
