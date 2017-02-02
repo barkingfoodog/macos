@@ -59,7 +59,7 @@ install_salt()
 
     echo "-- Setting ssh to allow user environment and including .bash_profile"
     echo "PermitUserEnvironment yes" >> /etc/ssh/sshd_config
-    su - "${SSH_USERNAME}" -c "echo 'source ~/.bash_profile\' > ~/.ssh/environment"
+    su - "${SSH_USERNAME}" -c "echo 'PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin' > ~/.ssh/environment"
 
     echo "-- Installing chef for busser"
     bash <(curl -L https://www.getchef.com/chef/install.sh)
