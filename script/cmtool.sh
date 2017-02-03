@@ -20,10 +20,10 @@ install_chef()
 {
     if [[ ${CM_VERSION} == 'latest' ]]; then
         echo "Installing latest Chef version"
-        curl -Lk https://www.opscode.com/chef/install.sh | sh --
+        curl -Lk https://www.getchef.com/chef/install.sh | sh --
     else
         echo "Installing Chef version ${CM_VERSION}"
-        curl -Lk https://www.opscode.com/chef/install.sh | sh -s -- -v $CM_VERSION
+        curl -Lk https://www.getchef.com/chef/install.sh | sh -s -- -v $CM_VERSION
     fi
 }
 
@@ -32,10 +32,10 @@ install_chefdk()
     echo "==> Installing Chef Development Kit"
     if [[ ${CM_VERSION} == 'latest' ]]; then
         echo "==> Installing latest Chef Development Kit version"
-        curl -Lk https://www.opscode.com/chef/install.sh | sh -s -- -P chefdk
+        curl -Lk https://www.getchef.com/chef/install.sh | sh -s -- -P chefdk
     else
         echo "==> Installing Chef Development Kit version ${CM_VERSION}"
-        curl -Lk https://www.opscode.com/chef/install.sh | sh -s -- -P chefdk -v $CM_VERSION
+        curl -Lk https://www.getchef.com/chef/install.sh | sh -s -- -P chefdk -v $CM_VERSION
     fi
     echo "==> Adding Chef Development Kit and Ruby to PATH"
     echo 'eval "$(chef shell-init bash)"' >> /Users/vagrant/.bash_profile
@@ -65,7 +65,7 @@ install_salt()
     su - "${SSH_USERNAME}" -c "echo 'PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin' > ~/.ssh/environment"
 
     echo "-- Installing chef for busser"
-    bash <(curl -L https://www.getchef.com/chef/install.sh)
+    install_chef
 
     echo "-- Installing busser"
     export BUSSER_ROOT="/opt/busser"
