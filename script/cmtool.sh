@@ -66,6 +66,16 @@ install_salt()
 
     echo "-- Installing chef for busser"
     bash <(curl -L https://www.getchef.com/chef/install.sh)
+
+    echo "-- Installing busser"
+    export BUSSER_ROOT="/opt/busser"
+    export GEM_HOME="/opt/busser/gems"
+    export GEM_PATH="/opt/busser/gems"
+    export GEM_CACHE="/opt/busser/gems/cache"
+    /opt/chef/embedded/bin/gem install busser --no-rdoc --no-ri
+    /opt/chef/embedded/bin/gem install serverspec --no-rdoc --no-ri
+    /opt/busser/gems/bin/busser setup
+    /opt/busser/gems/bin/busser plugin install busser-serverspec
 }
 
 # Install the latest Puppet and Facter using AutoPkg recipes
