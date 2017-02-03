@@ -76,6 +76,8 @@ install_salt()
     /opt/chef/embedded/bin/gem install serverspec --no-rdoc --no-ri
     /opt/busser/gems/bin/busser setup
     /opt/busser/gems/bin/busser plugin install busser-serverspec
+    mkdir -p /opt/busser/suites
+    chown "${SSH_USERNAME}" /opt/busser/suites
 }
 
 # Install the latest Puppet and Facter using AutoPkg recipes
