@@ -75,7 +75,7 @@ install_salt()
     /opt/chef/embedded/bin/gem install busser --no-rdoc --no-ri
     /opt/chef/embedded/bin/gem install serverspec --no-rdoc --no-ri
     /opt/busser/gems/bin/busser setup
-    /opt/busser/gems/bin/busser plugin install busser-serverspec
+    /opt/busser/gems/bin/busser plugin install busser-bash busser-serverspec
     mkdir -p /opt/busser/suites
     chown "${SSH_USERNAME}" /opt/busser/suites
 }
