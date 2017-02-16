@@ -2,7 +2,7 @@
   "_comment": "Build with `packer build -var-file=macos1012.json macos.json`",
   "vm_name": "macos1012",
   "desktop": "true",
-  "cpus": "1",
+  "cpus": "2",
   "disk_size": "62536",
   "iso_url": "dmg/OSX_InstallESD_10.12_16A323.dmg",
   "memory": "4096",

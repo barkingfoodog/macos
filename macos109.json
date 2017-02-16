@@ -2,7 +2,7 @@
   "_comment": "Build with `packer build -var-file=macos109.json macos.json`",
   "vm_name": "macos109",
   "desktop": "true",
-  "cpus": "1",
+  "cpus": "2",
   "disk_size": "32000",
   "iso_url": "dmg/OSX_InstallESD_10.9_13A603.dmg",
   "memory": "2048",

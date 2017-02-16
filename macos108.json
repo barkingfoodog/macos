@@ -2,7 +2,7 @@
   "_comment": "Build with `packer build -var-file=macos108.json macos.json`",
   "vm_name": "macos108",
   "desktop": "true",
-  "cpus": "1",
+  "cpus": "2",
   "disk_size": "64000",
   "iso_url": "dmg/OSX_InstallESD_10.8.5_12F45.dmg",
   "memory": "2048",
