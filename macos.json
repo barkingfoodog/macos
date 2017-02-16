@@ -105,6 +105,10 @@
   ],
   "provisioners": [
     {
+      "type": "shell-local",
+      "command": "sleep 60"
+    },
+    {
       "destination": "/private/tmp/set_kcpassword.py",
       "source": "script/support/set_kcpassword.py",
       "type": "file"
