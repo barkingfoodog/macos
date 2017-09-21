@@ -4,7 +4,15 @@
 OSX_VERS=$(sw_vers -productVersion | awk -F "." '{print $2}')
 
 # on 10.9+, we can leverage SUS to get the latest CLI tools
-if [ "$OSX_VERS" -ge 9 ]; then
+if [ "$OSX_VERS" -eq 12 ]; then
+    # Download the command-line tools from our site
+    PKG="/tmp/macos1012_clt.pkg"
+    curl --output "${PKG}" "https://box.suran.com/os_installers/macos/clt/Command%20Line%20Tools%20%28macOS%20Sierra%20version%2010.12%29.pkg"
+    # Install
+    installer -pkg "${PKG}" -target /
+    # Clean up
+    rm "${PKG}"
+elif [ "$OSX_VERS" -ge 9 ]; then
     # create the placeholder file that's checked by CLI updates' .dist code
     # in Apple's SUS catalog
     touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
