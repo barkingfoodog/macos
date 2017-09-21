@@ -125,6 +125,7 @@
         "CM_VERSION={{user `cm_version`}}"
       ],
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+      "expect_disconnect": true,
       "scripts": [
         "script/vagrant.sh",
         "script/vmware.sh",
