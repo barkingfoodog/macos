@@ -9,7 +9,6 @@
       "iso_checksum_type": "sha1",
       "iso_url": "{{ user `iso_url` }}",
       "output_directory": "output-{{ user `vm_name` }}-vmware-iso",
-      "post_shutdown_delay": "1m",
       "shutdown_command": "echo '{{ user `ssh_username` }}'|sudo -S shutdown -h now",
       "skip_compaction": true,
       "ssh_password": "{{ user `ssh_password` }}",
