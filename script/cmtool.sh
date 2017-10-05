@@ -1,5 +1,7 @@
 #!/bin/bash -eux
 
+set -e
+
 # Set CM & CM_VERSION inside of Packer's template:
 #
 # Valid values for CM are:
