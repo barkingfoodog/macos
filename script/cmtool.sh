@@ -63,6 +63,8 @@ install_salt()
     mkdir -p /etc/salt
 
     echo "-- Setting ssh to allow user environment and including .bash_profile"
+    if [ ! -d /etc/ssh ]; then mkdir -p /etc/ssh; fi
+    touch /etc/ssh/sshd_config
     echo "PermitUserEnvironment yes" >> /etc/ssh/sshd_config
     su - "${SSH_USERNAME}" -c "echo 'PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin' > ~/.ssh/environment"
 
