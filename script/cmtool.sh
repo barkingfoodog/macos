@@ -71,7 +71,7 @@ install_salt()
         SSHD_CONFIG_PATH="/etc/sshd_config"
     fi
 
-    echo "PermitUserEnvironment yes" >> "${SSHD_CONFIG_PATH}'
+    echo "PermitUserEnvironment yes" >> "${SSHD_CONFIG_PATH}"
     su - "${SSH_USERNAME}" -c "echo 'PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin' > ~/.ssh/environment"
 
     echo "-- Installing chef for busser"
