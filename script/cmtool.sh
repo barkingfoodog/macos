@@ -54,7 +54,7 @@ install_salt()
     su - "${SSH_USERNAME}" -c "curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C /usr/local"
  
     echo "-- Adding Homebrew to ${SSH_USERNAME} user's PATH"
-    su - "${SSH_USERNAME}" -c "echo 'export PATH=/usr/local/bin:/usr/local/sbin:\$PATH' >> .bash_profile && chmod 0700 .bash_profile"
+    su - "${SSH_USERNAME}" -c "echo 'export PATH=/usr/local/bin:/usr/local/sbin:\$PATH' >> ` && chmod 0700 .bash_profile"
 
     echo "-- Installing Salt with Homebrew as ${SSH_USERNAME}"
     su - "${SSH_USERNAME}" -c "source ~/.bash_profile && brew install saltstack"
@@ -63,9 +63,15 @@ install_salt()
     mkdir -p /etc/salt
 
     echo "-- Setting ssh to allow user environment and including .bash_profile"
-    if [ ! -d /etc/ssh ]; then mkdir -p /etc/ssh; fi
-    touch /etc/ssh/sshd_config
-    echo "PermitUserEnvironment yes" >> /etc/ssh/sshd_config
+    if [ -f /etc/ssh/sshd_config ]; then
+        # 10.11+ use this path
+        SSHD_CONFIG_PATH="/etc/ssh/sshd_config"
+    else
+         # 10.10 uses this path
+        SSHD_CONFIG_PATH="/etc/sshd_config"
+    fi
+
+    echo "PermitUserEnvironment yes" >> "${SSHD_CONFIG_PATH}'
     su - "${SSH_USERNAME}" -c "echo 'PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin' > ~/.ssh/environment"
 
     echo "-- Installing chef for busser"
