@@ -47,8 +47,8 @@
       "shutdown_command": "echo '{{ user `ssh_username` }}'|sudo -S shutdown -h now",
       "ssh_password": "{{ user `ssh_password` }}",
       "ssh_port": 22,
+      "ssh_timeout": "10000s",
       "ssh_username": "{{ user `ssh_username` }}",
-      "ssh_wait_timeout": "10000s",
       "type": "virtualbox-iso",
       "vboxmanage": [
         [ "modifyvm", "{{.Name}}", "--audiocontroller", "hda" ],
