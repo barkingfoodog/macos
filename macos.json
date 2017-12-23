@@ -107,7 +107,8 @@
   "provisioners": [
     {
       "type": "shell-local",
-      "command": "sleep 60"
+      "command": "sleep 60",
+      "expect_disconnect": true
     },
     {
       "destination": "/private/tmp/set_kcpassword.py",
@@ -154,6 +155,7 @@
         "CM={{user `cm`}}",
         "CM_VERSION={{user `cm_version`}}"
       ],
+      "expect_disconnect": true,
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
       "scripts": [
         "script/minimize.sh"
