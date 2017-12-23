@@ -9,7 +9,9 @@ if [[ "$UPDATE" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
     softwareupdate --install --all --verbose
 
     echo "==> Rebooting the machine"
-    reboot
+    reboot || true
     
-    sleep 60
+    sleep 60 || true
 fi
+
+exit 0
