@@ -107,8 +107,7 @@
   "provisioners": [
     {
       "type": "shell-local",
-      "command": "sleep 60",
-      "expect_disconnect": true
+      "command": "sleep 60"
     },
     {
       "destination": "/private/tmp/set_kcpassword.py",
