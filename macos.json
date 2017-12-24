@@ -53,9 +53,11 @@
       "type": "virtualbox-iso",
       "vboxmanage": [
         [ "modifyvm", "{{.Name}}", "--audiocontroller", "hda" ],
+        [ "modifyvm", "{{.Name}}", "--audio", "none" ],
         [ "modifyvm", "{{.Name}}", "--boot1", "dvd" ],
         [ "modifyvm", "{{.Name}}", "--boot2", "disk" ],
         [ "modifyvm", "{{.Name}}", "--chipset", "ich9" ],
+        [ "modifyvm", "{{.Name}}", "--cpuidset", "00000001", "000106e5", "06100800", "0098e3fd", "bfebfbff" ],
         [ "modifyvm", "{{.Name}}", "--firmware", "efi" ],
         [ "modifyvm", "{{.Name}}", "--hpet", "on" ],
         [ "modifyvm", "{{.Name}}", "--keyboard", "usb" ],
