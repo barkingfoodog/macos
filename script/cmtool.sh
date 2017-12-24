@@ -73,21 +73,6 @@ install_salt()
 
     echo "PermitUserEnvironment yes" >> "${SSHD_CONFIG_PATH}"
     su - "${SSH_USERNAME}" -c "echo 'PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin' > ~/.ssh/environment"
-
-    echo "-- Installing chef for busser"
-    install_chef
-
-    echo "-- Installing busser"
-    export BUSSER_ROOT="/opt/busser"
-    export GEM_HOME="/opt/busser/gems"
-    export GEM_PATH="/opt/busser/gems"
-    export GEM_CACHE="/opt/busser/gems/cache"
-    /opt/chef/embedded/bin/gem install busser --no-rdoc --no-ri
-    /opt/chef/embedded/bin/gem install serverspec --no-rdoc --no-ri
-    /opt/busser/gems/bin/busser setup
-    /opt/busser/gems/bin/busser plugin install busser-bash busser-serverspec
-    mkdir -p /opt/busser/suites
-    chown "${SSH_USERNAME}" /opt/busser/suites
 }
 
 # Install the latest Puppet and Facter using AutoPkg recipes
