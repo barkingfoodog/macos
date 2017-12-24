@@ -6,12 +6,15 @@ defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticCheckEnabl
 if [[ "$UPDATE" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
 
     echo "==> Running software update"
-    softwareupdate --install --all --verbose
+    updates=$(softwareupdate --install --all --verbose 2>&1)
+    echo ${updates}
+
+    if [[ ${updates} == *"No new software available"* ]] || [[ ${updates} == *"No updates are available"* ]]
+    	exit 0
+    fi
 
     echo "==> Rebooting the machine"
-    reboot || true
+    reboot
     
-    sleep 60 || true
+    sleep 60
 fi
-
-exit 0
