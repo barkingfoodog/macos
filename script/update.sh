@@ -9,7 +9,7 @@ if [[ "$UPDATE" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
     updates=$(softwareupdate --install --all --verbose 2>&1)
     echo ${updates}
 
-    if [[ ${updates} == *"No new software available"* ]] || [[ ${updates} == *"No updates are available"* ]]
+    if [[ ${updates} == *"No new software available"* ]] || [[ ${updates} == *"No updates are available"* ]]; then
     	exit 0
     fi
 
