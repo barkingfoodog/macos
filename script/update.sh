@@ -13,8 +13,8 @@ if [[ "$UPDATE" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
     	exit 0
     fi
 
-    echo "==> Rebooting the machine"
-    reboot
-    
-    sleep 60
+    if [[ ${updates} == *"Please restart immediately"* ]]; then
+	    echo "==> Rebooting the machine"
+	    reboot
+	fi    
 fi
