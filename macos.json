@@ -162,7 +162,7 @@
       "expect_disconnect": true,
       "scripts": [
         "script/cmtool.sh",
-        "script/energy.sh",
+        "script/energy.sh"
       ],
       "type": "shell"
     },
