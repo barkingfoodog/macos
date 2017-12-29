@@ -135,6 +135,7 @@
         "script/parallels.sh",
         "script/xcode-cli-tools.sh",
         "script/add-network-interface-detection.sh",
+        "script/energy.sh",
         "script/autologin.sh",
         "script/update.sh",
         "script/update.sh",
@@ -161,8 +162,7 @@
       "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
       "expect_disconnect": true,
       "scripts": [
-        "script/cmtool.sh",
-        "script/energy.sh"
+        "script/cmtool.sh"
       ],
       "type": "shell"
     },
