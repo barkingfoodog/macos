@@ -17,6 +17,20 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--memory", "2048"]
       v.customize ["modifyvm", :id, "--mouse", "usbtablet"]
       v.customize ["modifyvm", :id, "--vram", "128"]
+      v.customize ["modifyvm", :id, "--audio", "none" ]
+      v.customize ["modifyvm", :id, "--cpuidset", "00000001", "000106e5", "06100800", "0098e3fd", "bfebfbff" ]
+
+      config.trigger.before :destroy do
+        id_file = ".vagrant/machines/default/virtualbox/id"
+        machine_id = File.read(id_file) if File.exist?(id_file)
+        if !machine_id.nil?
+          pid = `ps -ax | grep #{machine_id} | grep -v grep | cut -d ' ' -f 1`
+          if pid =~ /\d+/
+            info "Killing #{machine_id} with pid #{pid}"
+            run "kill -9 #{pid}"
+          end
+        end
+      end
     end
 
     ["vmware_fusion", "vmware_workstation"].each do |provider| 
