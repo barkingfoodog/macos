@@ -7,6 +7,7 @@ Vagrant.configure("2") do |config|
  
     config.vm.provider :virtualbox do |v, override|
       v.gui = true
+      v.linked_clone = true
       v.customize ["modifyvm", :id, "--audiocontroller", "hda"]
       v.customize ["modifyvm", :id, "--boot1", "dvd"]
       v.customize ["modifyvm", :id, "--boot2", "disk"]
@@ -19,7 +20,8 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--vram", "128"]
       v.customize ["modifyvm", :id, "--audio", "none" ]
       v.customize ["modifyvm", :id, "--cpuidset", "00000001", "000106e5", "06100800", "0098e3fd", "bfebfbff" ]
-
+      v.customize ["modifyvm", :id, "--cups", "2" ]
+      
       config.trigger.before :destroy do
         id_file = ".vagrant/machines/default/virtualbox/id"
         machine_id = File.read(id_file) if File.exist?(id_file)
