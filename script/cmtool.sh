@@ -62,6 +62,12 @@ install_salt()
     echo "-- Configuring salt"
     mkdir -p /etc/salt
 
+    echo "-- Force installing tornado for macOS 10.9"
+    sw_vers | grep -q "10.9"
+    if [ $? -eq 0 ]; then
+        /usr/local/Cellar/saltstack/2017.7.2/libexec/bin/pip install tornado
+    fi
+
     echo "-- Setting ssh to allow user environment and including .bash_profile"
     if [ -f /etc/ssh/sshd_config ]; then
         # 10.11+ use this path
