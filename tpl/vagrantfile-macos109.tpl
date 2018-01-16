@@ -21,6 +21,8 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--audio", "none" ]
       v.customize ["modifyvm", :id, "--cpuidset", "00000001", "000106e5", "06100800", "0098e3fd", "bfebfbff" ]
       v.customize ["modifyvm", :id, "--cpus", "2" ]
+      v.customize ["modifyvm", :id, "--clipboard", "bidirectional" ]
+      v.customize ["modifyvm", :id, "--draganddrop", "bidirectional" ]
 
       config.trigger.before :destroy do
         id_file = ".vagrant/machines/default/virtualbox/id"
