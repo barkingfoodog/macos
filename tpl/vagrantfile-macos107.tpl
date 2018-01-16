@@ -23,6 +23,7 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--cpus", "2" ]
       v.customize ["modifyvm", :id, "--clipboard", "bidirectional" ]
       v.customize ["modifyvm", :id, "--draganddrop", "bidirectional" ]
+      v.customize ["storagectl", :id, "--name", "SATA Controller", "--hostiocache", "on" ]
       
       config.trigger.before :destroy do
         id_file = ".vagrant/machines/default/virtualbox/id"
