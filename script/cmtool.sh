@@ -62,9 +62,8 @@ install_salt()
     echo "-- Configuring salt"
     mkdir -p /etc/salt
 
-    echo "-- Force installing tornado for macOS 10.9"
-    sw_vers | grep -q "10.9"
-    if [ $? -eq 0 ]; then
+    if [ $(sw_vers | grep -q "10.9"; echo $?) -eq 0 ]; then
+        echo "-- Force installing tornado for macOS 10.9"
         /usr/local/Cellar/saltstack/2017.7.2/libexec/bin/pip install tornado
     fi
 
