@@ -17,6 +17,6 @@ if [[ "$UPDATE" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
 	    echo "==> Rebooting the machine"
 	    reboot
 
-        sleep 90
+        sleep 120
 	fi    
 fi
