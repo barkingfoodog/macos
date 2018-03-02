@@ -51,6 +51,7 @@ Vagrant.configure("2") do |config|
             run "kill -9 #{pid}"
           end
         end
+        sleep 10
       end
     end
 
