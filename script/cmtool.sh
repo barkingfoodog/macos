@@ -64,7 +64,7 @@ install_salt()
 
     if [ $(sw_vers | grep -q "10.9"; echo $?) -eq 0 ]; then
         echo "-- Force installing tornado for macOS 10.9"
-        /usr/local/Cellar/saltstack/2017.7.*/libexec/bin/pip install tornado
+        /usr/local/Cellar/saltstack/*/libexec/bin/pip install tornado
     fi
 
     echo "-- Setting ssh to allow user environment and including .bash_profile"
