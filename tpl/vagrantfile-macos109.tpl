@@ -25,14 +25,14 @@ Vagrant.configure("2") do |config|
       v.customize ["modifyvm", :id, "--draganddrop", "bidirectional" ]
       v.customize ["storagectl", :id, "--name", "SATA Controller", "--hostiocache", "on" ]
 
-      config.trigger.before :destroy do
+      config.trigger.before :destroy do |trigger|
         id_file = ".vagrant/machines/default/virtualbox/id"
         machine_id = File.read(id_file) if File.exist?(id_file)
         if !machine_id.nil?
           pid = `ps -ax | grep #{machine_id} | grep -v grep | cut -d ' ' -f 1`
           if pid =~ /\d+/
-            info "Killing #{machine_id} with pid #{pid}"
-            run "kill -9 #{pid}"
+            trigger.info = "Killing #{machine_id} with pid #{pid}"
+            trigger.run = {inline: "kill -9 #{pid}"}
           end
         end
       end
