@@ -36,6 +36,8 @@ Vagrant.configure("2") do |config|
           end
         end
       end
+      
+      config.vm.synced_folder ".", "/vagrant", disabled: true
     end
 
     ["vmware_fusion", "vmware_workstation"].each do |provider| 

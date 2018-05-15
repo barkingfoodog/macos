@@ -52,6 +52,8 @@ Vagrant.configure("2") do |config|
           end
         end
       end
+      
+      config.vm.synced_folder ".", "/vagrant", disabled: true
     end
 
     config.vm.provider :parallels do |v, override|
