@@ -46,15 +46,25 @@ install_chefdk()
 
 install_salt()
 {
+    HOMEBREW_ROOT=/usr/local
+    HOMEBREW_CORE_ROOT=${HOMEBREW_ROOT}/Homebrew/Library/Taps/homebrew/homebrew-core
+    SALTSTACK_COMMIT=5faebea3fa532a749df05acda955cc1ddc89b419 # 2017.7.4_1
+
     echo "==> Installing Salt provisioner"
 
     echo "-- Installing Homebrew"
     mkdir -p /usr/local
     chown -R "${SSH_USERNAME}" /usr/local
-    su - "${SSH_USERNAME}" -c "curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C /usr/local"
- 
+    su - "${SSH_USERNAME}" -c "curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C ${HOMEBREW_ROOT}"
+
     echo "-- Adding Homebrew to ${SSH_USERNAME} user's PATH"
-    su - "${SSH_USERNAME}" -c "echo 'export PATH=/usr/local/bin:/usr/local/sbin:\$PATH' >> .bash_profile && chmod 0700 .bash_profile"
+    su - "${SSH_USERNAME}" -c "echo 'export PATH=${HOMEBREW_ROOT}/bin:${HOMEBREW_ROOT}/sbin:\$PATH' >> .bash_profile && chmod 0700 .bash_profile"
+
+    echo "-- Checking out homebrew-core"
+    su - "${SSH_USERNAME}" -c "git clone https://github.com/Homebrew/homebrew-core ${HOMEBREW_CORE_ROOT}"
+
+    echo "-- Checking out our specific SaltStack version"
+    su - "${SSH_USERNAME}" -c  "git --git-dir ${HOMEBREW_CORE_ROOT} -C ${HOMEBREW_CORE_ROOT}/Formula checkout ${SALTSTACK_COMMIT} -- saltstack.rb"
 
     echo "-- Installing Salt with Homebrew as ${SSH_USERNAME}"
     su - "${SSH_USERNAME}" -c "source ~/.bash_profile && brew install saltstack && brew pin saltstack"
