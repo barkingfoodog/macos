@@ -60,8 +60,11 @@ install_salt()
     echo "-- Adding Homebrew to ${SSH_USERNAME} user's PATH"
     su - "${SSH_USERNAME}" -c "echo 'export PATH=${HOMEBREW_ROOT}/bin:${HOMEBREW_ROOT}/sbin:\$PATH' >> .bash_profile && chmod 0700 .bash_profile"
 
+    echo "-- Updating brew"
+    su - "${SSH_USERNAME}" -c "echo 'source ~/.bash_profile && brew update"
+
     echo "-- Checking out homebrew-core"
-    su - "${SSH_USERNAME}" -c "git clone https://github.com/Homebrew/homebrew-core ${HOMEBREW_CORE_ROOT}"
+    su - "${SSH_USERNAME}" -c "rm -rf ${HOMEBREW_CORE_ROOT} && git clone https://github.com/Homebrew/homebrew-core ${HOMEBREW_CORE_ROOT}"
 
     echo "-- Checking out our specific SaltStack version"
     su - "${SSH_USERNAME}" -c "cd ${HOMEBREW_CORE_ROOT}/Formula; git checkout ${SALTSTACK_COMMIT} -- saltstack.rb"
