@@ -64,7 +64,7 @@ install_salt()
     su - "${SSH_USERNAME}" -c "git clone https://github.com/Homebrew/homebrew-core ${HOMEBREW_CORE_ROOT}"
 
     echo "-- Checking out our specific SaltStack version"
-    su - "${SSH_USERNAME}" -c  "git --git-dir ${HOMEBREW_CORE_ROOT} -C ${HOMEBREW_CORE_ROOT}/Formula checkout ${SALTSTACK_COMMIT} -- saltstack.rb"
+    su - "${SSH_USERNAME}" -c "cd ${HOMEBREW_CORE_ROOT}/Formula; git checkout ${SALTSTACK_COMMIT} -- saltstack.rb"
 
     echo "-- Installing Salt with Homebrew as ${SSH_USERNAME}"
     su - "${SSH_USERNAME}" -c "source ~/.bash_profile && brew install saltstack && brew pin saltstack"
