@@ -18,5 +18,5 @@ if [[ "$UPDATE" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
 	    reboot
 
         sleep 120
-	fi    
+	fi
 fi
